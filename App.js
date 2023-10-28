@@ -1,22 +1,13 @@
-import React, {useState, useEffect} from 'react';
 import { NativeWindStyleSheet } from "nativewind";
+import { SafeAreaView } from 'react-native';
 
-import {
-  View,
-  Text,
-  ActivityIndicator,
-  FlatList,
-  SafeAreaView,
-  ImageBackground,
-  useWindowDimensions,
-  Image
-} from 'react-native';
-
-import axios from 'axios';
-import {API_KEY, NAGIO} from '@env'
 import Home from './components/Home';
+import useFetch from "./components/useFetch";
 
 const App = () => {
+  const { data, isLoading, error } = useFetch('https://api.rawg.io/api/creators');
+  console.log(data);
+
   return(
     <SafeAreaView className="flex flex-1 bg-[#221f1f]">
       <Home />
