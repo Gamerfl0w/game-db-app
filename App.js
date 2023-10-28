@@ -8,7 +8,8 @@ import {
   FlatList,
   SafeAreaView,
   ImageBackground,
-  useWindowDimensions
+  useWindowDimensions,
+  Image
 } from 'react-native';
 
 import axios from 'axios';
@@ -34,7 +35,6 @@ const App = () => {
           'https://api.rawg.io/api/games?key=' + API_KEY,
         )
         setData(response.data.results)
-        console.log(data)
         setIsLoading(false);
       } catch (e) {
         setError(e);
@@ -76,9 +76,45 @@ const App = () => {
                 </View>
               </View>
             </ImageBackground>
-            <View className="p-5">
+            <View className="flex-1 gap-5 flex-col justify-between p-5">
               <Text className='text-white'>{item.name}</Text>
-              <Text className='text-white'>Platforms Icon</Text>
+              <View className="flex flex-row flex-wrap">
+                {item.parent_platforms.map((v, i) => {
+                    
+                    if (v.platform.name.includes("PlayStation") || v.platform.name.includes("PS")){
+                      return <Image key={i} className="w-4 h-4" source={require('./assets/platforms/ps.png')} />;
+                    }
+
+                    if (v.platform.name.includes("Xbox")){
+                      return <Image key={i} className="w-4 h-4" source={require('./assets/platforms/xbox.png')} />
+                    }
+
+                    if (v.platform.name.includes("Nintendo")){
+                      return <Image key={i} className="w-4 h-4" source={require('./assets/platforms/nintendo.png')} />
+                    }
+
+                    if (v.platform.name.includes("PC")){
+                      return <Image key={i} className="w-4 h-4" source={require('./assets/platforms/pc.png')} />
+                    }
+
+                    if (v.platform.name.includes("macOS")){
+                      return <Image key={i} className="w-4 h-4" source={require('./assets/platforms/mac.png')} />
+                    }
+
+                    if (v.platform.name.includes("Linux")){
+                      return <Image key={i} className="w-4 h-4" source={require('./assets/platforms/linux.png')} />
+                    }
+
+                    if (v.platform.name.includes("Android")){
+                      return <Image key={i} className="w-4 h-4" source={require('./assets/platforms/android.png')} />
+                    }
+
+                    if (v.platform.name.includes("iOS")){
+                      return <Image key={i} className="w-4 h-4" source={require('./assets/platforms/ios.png')} />
+                    }
+                    return null
+                })}
+              </View>
             </View>
           </View>
 
