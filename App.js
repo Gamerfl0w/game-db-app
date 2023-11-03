@@ -8,7 +8,7 @@ import useFetch from "./components/useFetch";
 
 function HomeScreen({ navigation }) {
   return (
-    <SafeAreaView className="flex flex-1 bg-[#221f1f]">
+    <SafeAreaView className="bg-[#221f1f]">
       <Home />
       <Button
         title="Go to Details"

@@ -46,16 +46,16 @@ const Home = () => {
   // dont forget to put error handling
   // add readme(make it descriptive) and remove this comment
   return(
-<View className="flex flex-1 h-full w-full flex-col justify-start items-center bg-[#221f1f]">
-      {/* <Text className="text-center text-4xl mb-7 text-white p-5">All Games</Text> */}
-      <View className="flex justify-center items-center w-full flex-wrap">
-      <FlatList
-      key={numColumns}
-      numColumns={numColumns}
-      data={data}
-      ItemSeparatorComponent={() => <View style={{height: 5}} />}
-      renderItem={({item}) => (
-
+    <View>
+      <Text className="text-center text-4xl text-white p-5">All Games</Text>
+      <View className="flex w-full h-full p-6">
+        <FlatList
+        contentContainerStyle ={{ display: 'flex', justifyContent: "center", alignContent: "center", paddingBottom: 300 }}
+        key={numColumns}
+        numColumns={numColumns}
+        data={data}
+        // ItemSeparatorComponent={() => <View style={{margin: 20}} />}
+        renderItem={({item}) => (
           <View className="border-2 border-[#2e3233] rounded-xl bg-[#26324a] max-w-[174px]" style={{margin: numColumns == 1 ? 0 : 5}}>
             <ImageBackground imageStyle={{ borderTopLeftRadius: 12, borderTopRightRadius: 12 }} 
               className="relative w-[170px] h-[150px] bg-center bg-cover" 
@@ -66,9 +66,10 @@ const Home = () => {
                 </View>
               </View>
             </ImageBackground>
-            <View className="flex-1 gap-5 flex-col justify-between p-5">
+            <View className="flex-1 gap-5 flex-col justify-between p-5 mb-10">
               <Text className='text-white'>{item.name}</Text>
-              {/* <View className="flex flex-row flex-wrap">
+              <View className="flex flex-row flex-wrap">
+                {/* create better code and optimize images */}
                 {item.parent_platforms.map((v, i) => {
                     
                     if (v.platform.name.includes("PlayStation") || v.platform.name.includes("PS")){
@@ -104,20 +105,21 @@ const Home = () => {
                     }
                     return null
                 })}
-              </View> */}
+              </View>
             </View>
           </View>
 
-      )}/>
+        )}/>
 
       </View>
     </View>
+
   )
  
 }
 
-NativeWindStyleSheet.setOutput({
-  default: "native",
-});
+// NativeWindStyleSheet.setOutput({
+//   default: "native",
+// });
 
 export default Home;
