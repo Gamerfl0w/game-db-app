@@ -27,7 +27,6 @@ const Home = () => {
     width >= 640 ? numColumns = 3 : numColumns = 2;
   }
 
-  //make this a reusable component
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -45,11 +44,10 @@ const Home = () => {
   }, [width, responsiveCards()]);
 
   // dont forget to put error handling
-  // make this responsive
   // add readme(make it descriptive) and remove this comment
   return(
 <View className="flex flex-1 h-full w-full flex-col justify-start items-center bg-[#221f1f]">
-      <Text className="text-center text-4xl mb-7 text-white p-5">All Games</Text>
+      {/* <Text className="text-center text-4xl mb-7 text-white p-5">All Games</Text> */}
       <View className="flex justify-center items-center w-full flex-wrap">
       <FlatList
       key={numColumns}
@@ -70,7 +68,7 @@ const Home = () => {
             </ImageBackground>
             <View className="flex-1 gap-5 flex-col justify-between p-5">
               <Text className='text-white'>{item.name}</Text>
-              <View className="flex flex-row flex-wrap">
+              {/* <View className="flex flex-row flex-wrap">
                 {item.parent_platforms.map((v, i) => {
                     
                     if (v.platform.name.includes("PlayStation") || v.platform.name.includes("PS")){
@@ -106,7 +104,7 @@ const Home = () => {
                     }
                     return null
                 })}
-              </View>
+              </View> */}
             </View>
           </View>
 
