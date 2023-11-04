@@ -5,23 +5,22 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Home from './components/Home';
 import useFetch from "./components/useFetch";
+import GameDetails from "./components/GameDetails";
 
 function HomeScreen({ navigation }) {
   return (
-    <SafeAreaView className="bg-[#221f1f]">
+    <SafeAreaView className="flex flex-1 bg-[#221f1f]">
       <Home />
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      />
     </SafeAreaView>
   );
 }
 
-function DetailsScreen() {
+function DetailsScreen({route}) {
+  const { id } = route.params;
+
   return (
-    <SafeAreaView className="flex flex-1 bg-[#221f1f]">
-      <Text className="text-white">Details Screen</Text>
+    <SafeAreaView className="bg-[#221f1f]">
+      <GameDetails id={JSON.stringify(id)} />
     </SafeAreaView>
   );
 }
@@ -42,9 +41,5 @@ const App = () => {
   )
  
 }
-
-NativeWindStyleSheet.setOutput({
-  default: "native",
-});
 
 export default App;

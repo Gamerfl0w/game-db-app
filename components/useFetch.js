@@ -13,7 +13,7 @@ const useFetch = (url) => {
         const response = await axios.get(
           url + "?key=" + API_KEY,
         )
-        setData(response.data.results)
+        setData(response.data)
         setIsLoading(false);
       } catch (e) {
         setError(e);
