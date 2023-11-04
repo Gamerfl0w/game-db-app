@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { NativeWindStyleSheet } from "nativewind";
+
 import {
   View,
   Text,

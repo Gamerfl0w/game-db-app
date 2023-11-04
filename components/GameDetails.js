@@ -1,18 +1,15 @@
 import {
     View,
     Text,
-    FlatList,
-    SafeAreaView,
     ImageBackground,
     Image,
     Pressable,
-    Button,
-    useWindowDimensions,
     ScrollView
   } from 'react-native';
 
 import useFetch from "./useFetch";
 import { useEffect, useState } from 'react';
+import Screenshots from './Screenshots';
 
 const GameDetails = ({id}) => {
     const { data, isLoading, error } = useFetch('https://api.rawg.io/api/games/' + id);
@@ -36,8 +33,10 @@ const GameDetails = ({id}) => {
                 <View className={ expand ? "" : "h-44" }>
                   <Text className="text-white p-4">{data.description_raw}</Text>
                 </View>
+                <Pressable className={ expand ? "hidden" : "w-full" } onPress={() => setExpand(true)}><Text className="text-white text-center">See more</Text></Pressable>
+                <Screenshots gameName={data.slug} />
               </ScrollView>
-              <Pressable className={ expand ? "hidden" : "w-full" } onPress={() => setExpand(true)}><Text className="text-white text-center">See more</Text></Pressable>
+              
            </View>
         </View>
       );
