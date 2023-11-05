@@ -30,7 +30,7 @@ const GameDetails = ({id}) => {
            </View>
            <View className={ expand ? "flex-1" : "" }>
               <ScrollView className="flex flex-col text-center flex-grow">
-                <View className={ expand ? "" : "h-44" }>
+                <View className={ expand ? "" : "h-[30vh]" }>
                   <Text className="text-white p-4">{data.description_raw}</Text>
                 </View>
                 <Pressable className={ expand ? "hidden" : "w-full" } onPress={() => setExpand(true)}><Text className="text-white text-center">See more</Text></Pressable>

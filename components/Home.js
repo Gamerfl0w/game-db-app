@@ -55,10 +55,10 @@ const Home = () => {
   // add readme(make it descriptive) and remove this comment
   return(
     <View>
-      <Text className="text-center text-4xl text-white pt-4">All Games</Text>
-        <View className="flex w-full h-full p-6">
+      <Text className="text-center text-4xl text-white pt-20">All Games</Text>
+        <View className="flex w-full h-full p-2">
           <FlatList
-          contentContainerStyle ={{ display: "flex", justifyContent: "center", alignContent: "center", paddingBottom: 100 }}
+          contentContainerStyle ={{ display: "flex", justifyContent: "center", paddingBottom: 100 }}
           key={numColumns}
           numColumns={numColumns}
           data={data}

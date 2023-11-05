@@ -9,7 +9,7 @@ import GameDetails from "./components/GameDetails";
 
 function HomeScreen({ navigation }) {
   return (
-    <SafeAreaView className="flex flex-1 bg-[#221f1f]">
+    <SafeAreaView className="flex justify-center items-center flex-1 bg-[#221f1f]">
       <Home />
     </SafeAreaView>
   );
