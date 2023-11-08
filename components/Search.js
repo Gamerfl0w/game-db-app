@@ -6,6 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import {API_KEY} from '@env'
 import { NativeWindStyleSheet } from "nativewind";
 import axios from 'axios';
+import { useNavigation } from '@react-navigation/native';
 
 const Search = () => {
     const [isHidden, setIsHidden] = useState(false);
@@ -13,6 +14,7 @@ const Search = () => {
     const [results, setResults] = useState(null);
 
     const inputRef = useRef();
+    const navigation = useNavigation();
 
     const animated = new Animated.Value(1);
     const fadeIn = () => {
@@ -69,25 +71,28 @@ const Search = () => {
                       key={results?.id}
                       data={results}
                       renderItem={({item}) => (
-                        <View key={results.id} className="flex flex-row gap-5 px-5 pt-7 w-4/5">
-                          <Image className="w-24 h-20 rounded-xl" source={{ uri: item.background_image }} />
-                          <View className="flex flex-col justify-around">
-                              <Text className="text-white font-bold text-xl">{item.name}</Text>
-                            <View className="flex flex-row">
-                            {item.parent_platforms.map((v, i) => {
-                              return (
-                                <View key={i}>
-                                  { platforms.map((item, key) => {
-                                    if(v.platform.name.includes(item.name)){
-                                      return <Image key={key} className="w-5 h-5" source={item.icon} />
-                                    }
-                                  }) }
-                                </View>
-                              );                
-                            })}
+                        <Pressable onPress={() => { setIsHidden(!isHidden); navigation.navigate('Details', { id: item.id }); }}>
+                          <View key={results.id} className="flex flex-row gap-5 px-5 pt-7 w-4/5">
+                            <Image className="w-24 h-20 rounded-xl" source={{ uri: item.background_image }} />
+                            <View className="flex flex-col justify-around">
+                                <Text className="text-white font-bold text-xl">{item.name}</Text>
+                              <View className="flex flex-row">
+                              {item.parent_platforms.map((v, i) => {
+                                return (
+                                  <View key={i}>
+                                    { platforms.map((item, key) => {
+                                      if(v.platform.name.includes(item.name)){
+                                        return <Image key={key} className="w-5 h-5" source={item.icon} />
+                                      }
+                                    }) }
+                                  </View>
+                                );                
+                              })}
+                              </View>
                             </View>
                           </View>
-                        </View>
+                        </Pressable>
+                        
                       )}
                     />             
                 </SafeAreaView>

@@ -1,5 +1,5 @@
 import { NativeWindStyleSheet } from "nativewind";
-import { SafeAreaView, Text, Button } from 'react-native';
+import { SafeAreaView, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -33,7 +33,11 @@ const App = () => {
 
   return(
     <NavigationContainer initialRouteName="All Games">
-      <Stack.Navigator>
+      <StatusBar
+        animated={true}
+        backgroundColor="black"
+      />
+      <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="All Games" component={HomeScreen} />
         <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>

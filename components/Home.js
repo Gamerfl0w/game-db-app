@@ -69,7 +69,7 @@ const Home = () => {
         <View className="flex w-full h-full p-2">
           <FlatList
           // onScroll={() => hideOnScroll()}
-          contentContainerStyle ={{ display: "flex", justifyContent: "center", paddingBottom: 200 }}
+          contentContainerStyle ={{ display: "flex", justifyContent: "center", paddingBottom: 200, paddingTop: 10 }}
           key={numColumns}
           numColumns={numColumns}
           data={data}
