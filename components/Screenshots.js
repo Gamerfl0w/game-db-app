@@ -26,7 +26,7 @@ const Screenshots = ({gameName}) => {
                     })}
                     </ScrollView>
                 </View>
-                <Modal visible={isVisible} animationType="fade">
+                <Modal visible={isVisible} animationType="fade" onRequestClose={() => setIsVisible(!isVisible)}>
                     <View className="flex justify-center items-center h-screen w-screen">
                         <GestureHandlerRootView style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                             <ImageViewer

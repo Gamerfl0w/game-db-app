@@ -4,17 +4,16 @@ import { useNavigation } from '@react-navigation/native';
 import {
   View,
   Text,
-  ActivityIndicator,
   FlatList,
-  SafeAreaView,
   ImageBackground,
   useWindowDimensions,
   Image,
-  Pressable
+  Pressable,
 } from 'react-native';
 
 import axios from 'axios';
 import {API_KEY, NAGIO} from '@env'
+import Search from './Search';
 
 const Home = () => {
   const [data, setData] = useState(null);
@@ -48,7 +47,18 @@ const Home = () => {
   function showId(id){
     setId(id);
   }
-  
+
+  // function hideOnScroll(){
+  //   setIsHidden(setIsHidden(!isHidden));
+  //   const timer = setTimeout(() => setIsHidden(!isHidden), 1000);
+  //   clearTimeout(timer);
+  // }
+
+  const platforms = [ { "name": "PlayStation", "icon": require('../assets/platforms/ps.png')}, { "name": "Xbox", "icon": require('../assets/platforms/xbox.png')},
+                      { "name": "Nintendo", "icon": require('../assets/platforms/nintendo.png')}, { "name": "PC", "icon": require('../assets/platforms/pc.png')},
+                      { "name": "macOS", "icon": require('../assets/platforms/mac.png')}, { "name": "Linux", "icon": require('../assets/platforms/linux.png')},
+                      { "name": "Android", "icon": require('../assets/platforms/android.png')}, { "name": "iOS", "icon": require('../assets/platforms/ios.png')}, ];
+                      
   const navigation = useNavigation();
 
   // dont forget to put error handling
@@ -58,7 +68,8 @@ const Home = () => {
       <Text className="text-center text-4xl text-white pt-20">All Games</Text>
         <View className="flex w-full h-full p-2">
           <FlatList
-          contentContainerStyle ={{ display: "flex", justifyContent: "center", paddingBottom: 100 }}
+          // onScroll={() => hideOnScroll()}
+          contentContainerStyle ={{ display: "flex", justifyContent: "center", paddingBottom: 200 }}
           key={numColumns}
           numColumns={numColumns}
           data={data}
@@ -80,47 +91,27 @@ const Home = () => {
                 <View className="flex-1 gap-5 flex-col justify-between p-5 mb-10">
                   <Text className='text-white'>{item.name}</Text>
                   <View className="flex flex-row flex-wrap">
-                    {/* create better code and optimize images */}
+                    {/* optimize images */}
                     {item.parent_platforms.map((v, i) => {
-                        
-                        if (v.platform.name.includes("PlayStation") || v.platform.name.includes("PS")){
-                          return <Image key={i} className="w-4 h-4" source={require('../assets/platforms/ps.png')} />;
-                        }
-
-                        if (v.platform.name.includes("Xbox")){
-                          return <Image key={i} className="w-4 h-4" source={require('../assets/platforms/xbox.png')} />
-                        }
-
-                        if (v.platform.name.includes("Nintendo")){
-                          return <Image key={i} className="w-4 h-4" source={require('../assets/platforms/nintendo.png')} />
-                        }
-
-                        if (v.platform.name.includes("PC")){
-                          return <Image key={i} className="w-4 h-4" source={require('../assets/platforms/pc.png')} />
-                        }
-
-                        if (v.platform.name.includes("macOS")){
-                          return <Image key={i} className="w-4 h-4" source={require('../assets/platforms/mac.png')} />
-                        }
-
-                        if (v.platform.name.includes("Linux")){
-                          return <Image key={i} className="w-4 h-4" source={require('../assets/platforms/linux.png')} />
-                        }
-
-                        if (v.platform.name.includes("Android")){
-                          return <Image key={i} className="w-4 h-4" source={require('../assets/platforms/android.png')} />
-                        }
-
-                        if (v.platform.name.includes("iOS")){
-                          return <Image key={i} className="w-4 h-4" source={require('../assets/platforms/ios.png')} />
-                        }
-                        return null
+                      return (
+                        <View key={i}>
+                          { platforms.map((item, key) => {
+                            if(v.platform.name.includes(item.name)){
+                              return <Image key={key} className="w-4 h-4" source={item.icon} />
+                            }
+                          }) }
+                        </View>
+                      );                
                     })}
                   </View>
                 </View>
             </Pressable>
 
           )}/>
+        </View>
+        
+        <View className="absolute h-full w-full">
+          <Search />
         </View>
     </View>
 
